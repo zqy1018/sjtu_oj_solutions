@@ -1,2 +1,2 @@
-# sjtu_oj_solutions
-my solutions for problems on the online judge of SJTU
+# SJTUOJ 题解
+SJTU OJ 上的一些比较好玩的题目的题解。
