@@ -1,5 +1,4 @@
 /*
-    See the solution at https://github.com/zqy1018/sjtu_oj_solutions/blob/master/solutions/sjtu4218.md
     Hint: use monotonic queue
 */
 #include <bits/stdc++.h>
