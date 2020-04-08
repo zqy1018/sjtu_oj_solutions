@@ -8,11 +8,11 @@ struct node{
         x(_x), y(_y), to(_t){}
     node(){}
 };
-node q[100005];//N0 S3 W2 E1
+node q[100005];
 int n, m, ma[55][55] = {0};
 int rear = 0, front = 0;
-int st[2], ls[2];   // start point and destination
-const int dx[] = {-1, 0, 0, 1}, dy[] = {0, 1, -1, 0};
+int st[2], ls[2];                                       // start point and destination
+const int dx[] = {-1, 0, 0, 1}, dy[] = {0, 1, -1, 0};   //N0 S3 W2 E1
 int dis[55][55][4];
 char dir;
 inline void enque(int a, int b, int c){
@@ -48,7 +48,7 @@ int bfs(){
         res = min(res, dis[ls[0]][ls[1]][i]);
     return res;
 }
-int main(){//仅有left right 
+int main(){
     scanf("%d%d", &n, &m);
     memset(dis, 0x3f, sizeof(dis));
     for (int i = 1; i <= n; ++i){
