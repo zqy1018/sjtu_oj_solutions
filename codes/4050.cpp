@@ -25,41 +25,41 @@ inline void addedge(int u_, int v_, int c_){
     to[cnt] = u_, nxt[cnt] = at[v_], cap[cnt] = 0, at[v_] = cnt++;
 }
 bool bfs(){
-	memset(vis, 0, sizeof(vis));
-	q.push(S);
+    memset(vis, 0, sizeof(vis));
+    q.push(S);
     d[S] = 0, vis[S] = true;
-	while (!q.empty()){
-		int h = q.front();
+    while (!q.empty()){
+        int h = q.front();
         q.pop();
-		for (int i = at[h]; i != -1; i = nxt[i]){
-			if (!vis[to[i]] && cap[i] > flow[i])
-				vis[to[i]] = true, 
-				d[to[i]] = d[h] + 1,
+        for (int i = at[h]; i != -1; i = nxt[i]){
+            if (!vis[to[i]] && cap[i] > flow[i])
+                vis[to[i]] = true, 
+                d[to[i]] = d[h] + 1,
                 q.push(to[i]);
-		}
-	}
-	return vis[T];
+        }
+    }
+    return vis[T];
 }
 int dfs(int u, int f){
-	if (u == T || f == 0) return f;
-	int now_flow = 0, fl;
-	for (int &i = cur[u]; i != -1; i = nxt[i]){
+    if (u == T || f == 0) return f;
+    int now_flow = 0, fl;
+    for (int &i = cur[u]; i != -1; i = nxt[i]){
         if (d[to[i]] == d[u] + 1 && (fl = dfs(to[i], min(f, cap[i] - flow[i]))) > 0){
             flow[i] += fl, flow[i ^ 1] -= fl;
             now_flow += fl, f -= fl;
             if (!f) break;
         }
-	}
-	return now_flow;
+    }
+    return now_flow;
 }
 int dinic(){
-	int max_flow = 0, ans;
-	while (bfs()){
-		for (int i = 0; i <= n * m + 1; ++i)
-			cur[i] = at[i];
-		max_flow += dfs(S, INF);
-	}
-	return max_flow;
+    int max_flow = 0, ans;
+    while (bfs()){
+        for (int i = 0; i <= n * m + 1; ++i)
+            cur[i] = at[i];
+        max_flow += dfs(S, INF);
+    }
+    return max_flow;
 }
 void init(){
     n = read(), m = read();
